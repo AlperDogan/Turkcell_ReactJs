@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
+import Footer from './inc/Footer'
 import NavBar from './inc/NavBar'
 import { userLoginControl } from './util'
 
@@ -12,7 +13,7 @@ function Security(item: {component: JSX.Element}) {
     <Navigate to='/'></Navigate>
     :
     <>
-    <NavBar user ={user}></NavBar> {item.component}
+    <NavBar user={user} /> {item.component} <Footer />
     </>
   )
 }

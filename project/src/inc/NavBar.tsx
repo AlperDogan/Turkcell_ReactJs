@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { DataContext } from '../DataContext'
 import { Bilgiler } from '../models/IUser'
 import { order } from '../service'
 import { OrderAction } from '../useRedux/actions/OrderAction'
@@ -53,10 +54,12 @@ function NavBar(item: { user: Bilgiler }) {
     dispatch( sendAction )
   }
 
+  const { getItem, setItem } = useContext(DataContext)
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Navbar</a>
+      <a className="navbar-brand" href="#">{ getItem.title }</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

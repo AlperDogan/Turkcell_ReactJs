@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import {ToastContainer } from 'react-toastify'
 
 import Dashboard from './Dashboard'
+import { data, DataContext } from './DataContext'
 import Login from './Login'
 import Orders from './Orders'
 import ProductDetail from './ProductDetail'
@@ -13,6 +14,7 @@ import { userLoginControl } from './util'
 
 export const router = 
 <Provider store= {store}>
+<DataContext.Provider value={data}>
 <BrowserRouter>
 <ToastContainer></ToastContainer>
 <Routes>
@@ -23,4 +25,5 @@ export const router =
     <Route path='/orders' element ={<Security component={<Orders/>}/>}></Route>
 </Routes>
 </BrowserRouter>
+</DataContext.Provider>
 </Provider>

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
+import { DataContext } from './DataContext';
 import ProductItem from './inc/ProductItem';
 import { ProBilgiler } from './models/IProduct';
 import { allProduct } from './service';
@@ -43,6 +44,9 @@ function Dashboard() {
     )
     setProArr(searchArr)
   },[searchSelector])
+
+  const { getItem, setItem }  = useContext(DataContext)
+  setItem({title: 'Products', color: '#000000'})
 
   return (
     <>

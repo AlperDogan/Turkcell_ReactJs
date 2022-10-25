@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { IPerson } from './models/IPerson'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { DataContext } from './DataContext'
 
 
 function Users() {
+
+  const nameRef = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    nameRef.current?.focus()
+  }, [])
+
   const [persons,setPersons] = useState<IPerson[]>([])
   const pullData = () => {
     const stringPull = localStorage.getItem('persons')
@@ -17,6 +24,7 @@ function Users() {
 
   useEffect(()=>{
     pullData()
+    
   },[])
 
   const deleteItem= (index: number)=>
@@ -57,7 +65,14 @@ function Users() {
       values.name = ''
       values.email = ''
       values.phone = ''
+      nameRef.current?.focus()
     }
+  })
+
+  const { getItem, setItem } = useContext(DataContext)
+  setItem({
+    title: 'Users',
+    color: '#000000'
   })
 
   return (
@@ -71,7 +86,7 @@ function Users() {
           <h2>Person Add</h2>
           <form onSubmit={handleSubmit}>
             <div className='mb-3'>
-              <input value={values.name} onChange={handleChange} name='name' className='form-control' placeholder='Name'></input>
+            <input ref={nameRef} value={values.name} onChange={handleChange} name='name' className='form-control' placeholder='Name'></input>
               { errors.name && <div className='text-danger'> { errors.name } </div> }
             </div>
             <div className='mb-3'>

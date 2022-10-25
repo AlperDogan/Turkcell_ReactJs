@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useSelector } from 'react-redux'
+import { DataContext } from './DataContext'
 import { Order } from './models/IOrders'
 import { order } from './service'
 import { StateType } from './useRedux/store'
@@ -22,6 +23,12 @@ function Orders() {
             })
         }
     }, [])*/
+
+    const { getItem, setItem } = useContext(DataContext)
+  setItem({
+        title: 'Orders',
+        color: '#000000'
+  })
     
   return (
     <>
