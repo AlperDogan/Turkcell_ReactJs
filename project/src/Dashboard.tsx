@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductItem from './inc/ProductItem';
 import { ProBilgiler } from './models/IProduct';
@@ -35,12 +36,20 @@ function Dashboard() {
   useEffect(() => {
     console.log("useEffect -2");
     const search =searchSelector.toLowerCase()
-    const searchArr =oldProArr.filter((item)=>item.productName.toLowerCase().includes(search))
+    const searchArr =oldProArr.filter((item)=>
+    item.productName.toLowerCase().includes(search)|| 
+    item.price.includes(search)||
+    item.brief.toLocaleLowerCase().includes(search)
+    )
     setProArr(searchArr)
   },[searchSelector])
 
   return (
     <>
+    <Helmet>
+      <title>Product</title>
+      <meta name='description' content='Page Product Content'></meta>
+    </Helmet>
     <h2>Products</h2>
       <div className='row'>
         {proArr.map((item, index) =>

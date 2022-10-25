@@ -1,8 +1,14 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 
 function Users() {
   return (
-    <div>Users</div>
+    <>
+    <Helmet>
+        <title> All User </title>
+        <meta name='description' content='All User Page Content'></meta>
+    </Helmet>
+  </>
   )
 }
 

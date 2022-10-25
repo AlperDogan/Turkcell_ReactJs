@@ -6,6 +6,7 @@ import { addBasket, order } from './service'
 import { useDispatch } from 'react-redux'
 import { OrderAction } from './useRedux/actions/OrderAction'
 import { OrderType } from './useRedux/types/OrderType'
+import { Helmet } from 'react-helmet'
 
 function ProductDetail() {
     const navigate = useNavigate()
@@ -66,6 +67,10 @@ function ProductDetail() {
 
     return (
         <>
+        <Helmet>
+            <title>{item?.productName}</title>
+            <meta name='description' content={item?.brief}></meta>
+        </Helmet>
             {
                 item &&
                 <>
